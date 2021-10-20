@@ -1,6 +1,7 @@
 resource "aws_instance" "example-vm-1" {
     ami           = "ami-0cef61fd3eb8cfb72"
     instance_type = "t2.micro"
+    key_name = "terrakeys"
 }
 
 resource "aws_network_interface" "demo-nic" {
