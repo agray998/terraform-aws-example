@@ -7,3 +7,7 @@ variable "secretkey" {
     type      = string
     sensitive = true
 }
+
+variable "ubuntu_ami" {
+  
+}

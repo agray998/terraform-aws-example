@@ -19,6 +19,7 @@ module "vpc_module" {
 
 module "vm_module" {
     source = "./vm"
+    vm_ami = var.ubuntu_ami
     nsg_id = module.vpc_module.nsg_id
     sub_id = module.vpc_module.sub_id
 }

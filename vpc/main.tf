@@ -1,26 +1,23 @@
 resource "aws_vpc" "example_vpc" {
   cidr_block = "10.0.0.0/16"
-
-  tags = {
+  tags       = {
       Name = "demo"
     }
 }
 
 resource "aws_subnet" "example_sub" {
-  vpc_id     = aws_vpc.example_vpc.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "eu-west-2a"
+  vpc_id                  = aws_vpc.example_vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-west-2a"
   map_public_ip_on_launch = true
-  
-  tags = {
+  tags                    = {
     Name = "demo"
   }
 }
 
 resource "aws_internet_gateway" "example_gw" {
   vpc_id = aws_vpc.example_vpc.id
-
-  tags = {
+  tags   = {
     Name = "demo"
   }
 }
@@ -34,10 +31,9 @@ resource "aws_route_table" "example_rt" {
     }
 
   route {
-      ipv6_cidr_block        = "::/0"
-      gateway_id = aws_internet_gateway.example_gw.id
+      ipv6_cidr_block = "::/0"
+      gateway_id      = aws_internet_gateway.example_gw.id
     }
-
   tags = {
     Name = "demo"
   }
@@ -61,9 +57,20 @@ resource "aws_security_group" "allow_ssh" {
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = []
-      prefix_list_ids = []
-      security_groups = []
-      self = false
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    },
+    {
+      description      = "Flask"
+      from_port        = 5000
+      to_port          = 5000
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
     }
   ]
 
@@ -75,9 +82,9 @@ resource "aws_security_group" "allow_ssh" {
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
-      prefix_list_ids = []
-      security_groups = []
-      self = false
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
     }
   ]
 

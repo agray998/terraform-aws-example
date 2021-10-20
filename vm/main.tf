@@ -1,8 +1,19 @@
 resource "aws_instance" "example_vm_1" {
-    ami           = "ami-0cef61fd3eb8cfb72"
-    instance_type = "t2.micro"
-    key_name = "terrakeys"
+    ami               = var.vm_ami
+    instance_type     = "t2.micro"
+    key_name          = "terrakeys"
     availability_zone = "eu-west-2a"
+    user_data         = <<-EOF
+    #!/bin/bash
+    sudo apt-get update
+    sudo apt install python3 python3-pip -y
+    git clone https://github.com/agray998/QA-DevOps-Fundamental-Project.git && cd QA-DevOps-Fundamental-Project
+    pip3 install -r requirements.txt
+    export secretkey=jwbcjwbvbvwdvbwqjebvkwebvq
+    python3 create.py
+    gunicorn -D --workers=4 --bind=0.0.0.0:5000 app:app
+    EOF
+
 
     network_interface {
       device_index         = 0
