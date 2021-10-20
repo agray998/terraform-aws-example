@@ -42,6 +42,11 @@ resource "aws_route_table" "example-rt" {
   }
 }
 
+resource "aws_route_table_association" "example-rta" {
+  subnet_id      = aws_subnet.example-sub.id
+  route_table_id = aws_route_table.example-rt.id
+}
+
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
