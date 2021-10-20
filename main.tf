@@ -14,13 +14,11 @@ provider "aws" {
 }
 
 module "vpc_module" {
-    source = "./vpc"
-    vpc-cidr = "10.0.0.0/16"
+    source   = "./vpc"
 }
 
 module "vm_module" {
     source = "./vm"
-    vpc-id = module.vpc_module.vpc_id
-    nsg-id = module.vpc_module.nsg_id
-    sub-id = module.vpc_module.sub_id
+    nsg_id = module.vpc_module.nsg_id
+    sub_id = module.vpc_module.sub_id
 }

@@ -1,11 +1,7 @@
-variable "vpc-id" {
+variable "nsg_id" {
   
 }
 
-variable "nsg-id" {
-  
-}
-
-variable "sub-id" {
+variable "sub_id" {
   
 }

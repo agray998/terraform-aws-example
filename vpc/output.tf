@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = aws_vpc.example-vpc.id
+  value = aws_vpc.example_vpc.id
 }
 
 output "nsg_id" {
@@ -7,5 +7,5 @@ output "nsg_id" {
 }
 
 output "sub_id" {
-  value = aws_subnet.example-sub.id
+  value = aws_subnet.example_sub.id
 }
